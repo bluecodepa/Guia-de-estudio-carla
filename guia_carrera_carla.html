@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Guide · Content Strategist & Community Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0d0a14;--surface:#161122;--surface2:#0d0a14;--border:#2a2040;--text:#e8e0f0;--text2:#c8bdd8;--text3:#9a8fb0;--text4:#6e6380;--text5:#4a4060;--accent:#e879a8;--accent2:#c084fc;--warm:#fbbf24;--mint:#34d399;--link:#a78bfa;--green:#00ff88;--font:'Outfit',sans-serif;--mono:'JetBrains Mono','Fira Code',monospace}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;min-height:100vh}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glow{0%,100%{box-shadow:0 0 15px rgba(232,121,168,.12)}50%{box-shadow:0 0 30px rgba(232,121,168,.25)}}
+.header{background:linear-gradient(180deg,#1a1028,var(--bg));border-bottom:1px solid var(--border);padding:24px 20px 18px;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.header-inner{max-width:860px;margin:0 auto}
+.header-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
+.header-tag{font-family:var(--mono);color:var(--accent);font-size:10px;letter-spacing:3px;font-weight:600;margin-bottom:3px}
+.header h1{font-size:20px;font-weight:800;color:#f8f0ff;letter-spacing:-.5px}
+.header-sub{color:var(--text5);font-size:12px;margin-top:2px;font-family:var(--mono)}
+.header-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.btn-s{background:transparent;border:1px solid #443860;color:var(--text3);padding:5px 10px;border-radius:5px;font-size:11px;cursor:pointer;font-family:var(--mono);transition:background .15s}
+.btn-s:hover{background:var(--border)}
+.btn-reset{background:transparent;border:1px solid #ef444433;color:#ef4444;padding:5px 10px;border-radius:5px;font-size:10px;cursor:pointer;font-family:var(--mono)}
+.btn-reset:hover{background:#ef444411}
+.prog-wrap{margin-top:14px}
+.prog-labels{display:flex;justify-content:space-between;margin-bottom:5px;font-family:var(--mono);font-size:11px}
+.prog-left{color:var(--text5)}
+.prog-right{color:var(--accent);font-weight:600}
+.prog-track{height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;transition:width .5s ease}
+.prog-fill.glowing{animation:glow 3s infinite}
+.stats-panel{max-width:860px;margin:0 auto;padding:14px 20px 0;animation:slideIn .25s ease}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;cursor:pointer;transition:border-color .2s}
+.stat-card:hover{border-color:#443860}
+.stat-phase{font-size:9px;font-family:var(--mono);font-weight:600;letter-spacing:1px}
+.stat-pct{font-size:22px;font-weight:800;color:#f8f0ff;margin:2px 0}
+.stat-count{font-size:10px;color:var(--text5);font-family:var(--mono)}
+.stat-bar{height:2px;background:var(--border);border-radius:1px;margin-top:6px;overflow:hidden}
+.stat-bar-fill{height:100%;border-radius:1px;transition:width .4s}
+.tabs{max-width:860px;margin:0 auto;padding:14px 20px 0;display:flex;gap:4px;overflow-x:auto}
+.tab{background:transparent;border:1px solid var(--border);border-bottom:1px solid var(--border);color:var(--text4);padding:7px 12px;border-radius:7px 7px 0 0;font-size:11px;font-weight:400;cursor:pointer;font-family:var(--mono);white-space:nowrap;transition:all .15s}
+.tab:hover{background:var(--border)}
+.tab.active{background:var(--surface);font-weight:700}
+.tab .tpct{margin-left:5px;opacity:.5;font-size:9px}
+.content{max-width:860px;margin:0 auto;padding:0 20px 40px}
+.phase-banner{background:var(--surface);border-radius:0 8px 8px 8px;padding:16px 20px;margin-bottom:12px}
+.phase-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.phase-title{font-size:16px;font-weight:800;letter-spacing:.5px}
+.phase-sub{color:var(--text4);font-size:12px;margin-top:1px}
+.phase-badge{padding:4px 12px;border-radius:16px;font-family:var(--mono);font-size:11px;font-weight:600}
+.module{background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:8px;overflow:hidden;transition:border-color .3s}
+.mod-header{width:100%;background:transparent;border:none;color:var(--text);padding:14px 16px;cursor:pointer;text-align:left;display:flex;align-items:center;gap:12px;transition:background .15s;font-family:var(--font)}
+.mod-header:hover{background:var(--border)}
+.mod-icon{font-size:22px;flex-shrink:0}
+.mod-info{flex:1;min-width:0}
+.mod-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px}
+.mod-name{font-weight:700;font-size:14px}
+.mod-weeks{color:var(--text5);font-size:11px;font-family:var(--mono);margin-left:8px}
+.mod-prog{font-family:var(--mono);font-size:11px;font-weight:600}
+.mod-arrow{transition:transform .2s;color:var(--text5);font-size:10px;margin-left:8px}
+.mod-arrow.open{transform:rotate(180deg)}
+.mod-bar{height:2px;background:var(--surface2);border-radius:1px;margin-top:8px;overflow:hidden}
+.mod-bar-fill{height:100%;border-radius:1px;transition:width .4s}
+.mod-body{padding:0 16px 16px;animation:slideIn .2s ease}
+.mark-row{display:flex;justify-content:flex-end;margin-bottom:8px}
+.btn-mark{background:transparent;padding:3px 10px;border-radius:4px;font-size:10px;cursor:pointer;font-family:var(--mono);transition:background .15s}
+.btn-mark:hover{background:var(--surface2)}
+.sec-box{background:var(--surface2);border-radius:6px;padding:10px 14px;margin-bottom:10px}
+.sec-label{font-size:10px;font-family:var(--mono);font-weight:600;margin-bottom:8px;letter-spacing:1.5px}
+.topic-row{display:flex;align-items:flex-start;gap:9px;padding:7px 4px;border-radius:4px;cursor:pointer;transition:all .15s;user-select:none}
+.topic-row:hover{background:var(--surface)}
+.topic-row.done{opacity:.5}
+.chk{min-width:18px;height:18px;border-radius:3px;border:1.5px solid #443860;display:flex;align-items:center;justify-content:center;margin-top:1px;flex-shrink:0;transition:all .15s}
+.chk.on{border-color:var(--green);background:rgba(0,255,136,.1)}
+.t-text{font-size:12.5px;line-height:1.5}
+.t-text.done{text-decoration:line-through;color:var(--text5)}
+.res-box{border-left:2px solid rgba(192,132,252,.2)}
+.res-link{display:block;margin-bottom:5px}
+.res-link a{color:var(--link);text-decoration:none;font-size:12px;transition:color .15s}
+.res-link a:hover{color:#c4b5fd}
+.res-arrow{color:var(--text5);margin-right:6px}
+.proj-box{border-left:2px solid rgba(52,211,153,.2)}
+.footer{text-align:center;padding:28px 0 8px;margin-top:24px}
+.footer-text{font-family:var(--mono);font-size:10px;color:var(--border)}
+@media(max-width:600px){.header h1{font-size:17px}.stats-grid{grid-template-columns:repeat(auto-fit,minmax(100px,1fr))}.mod-weeks{display:none}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const SK="content-career-progress-v1";
+const PHASES=[
+{id:"p1",phase:1,title:"STORYTELLING FOUNDATIONS",months:"Abril \u2013 Junio 2026",color:"#e879a8",
+modules:[
+{id:"c1",title:"Storytelling Fundamentals",weeks:"Sem 1\u20132",icon:"\ud83d\udcd6",
+topics:[
+{id:"c1_1",text:"Hero\u2019s Journey (estructura narrativa cl\u00e1sica)"},
+{id:"c1_2",text:"Story arcs: comienzo, cl\u00edmax, resoluci\u00f3n"},
+{id:"c1_3",text:"Character development (crear personajes cre\u00edbles)"},
+{id:"c1_4",text:"Emotional hooks: qu\u00e9 engancha al audience"},
+{id:"c1_5",text:"Conflicto y resoluci\u00f3n (tensi\u00f3n narrativa)"},
+{id:"c1_6",text:"Diferencia entre historia y marketing"}
+],
+resources:[
+{name:"Pixar Storytelling Rules (Khan Academy)",url:"https://www.khanacademy.org/computing/pixar/storytelling"},
+{name:"StoryBrand Framework (Donald Miller YT)",url:"https://www.youtube.com/c/DonaldMillerStoryBrand"},
+{name:"Nielsen Norman - Storytelling UX",url:"https://www.nngroup.com/articles/storytelling/"},
+{name:"TED: The Art of Storytelling",url:"https://www.ted.com/playlists/62/how_to_tell_a_story"}
+],
+project:"Escribe tu historia personal usando Hero\u2019s Journey. Crea narrativa de marca para CarlaGems o Velvet Finds. Visualiza estructura de 3 actos."},
+{id:"c2",title:"Brand Positioning & Voice",weeks:"Sem 3\u20134",icon:"\ud83c\udfa8",
+topics:[
+{id:"c2_1",text:"Brand positioning: c\u00f3mo diferenciarte en el mercado"},
+{id:"c2_2",text:"Brand voice: tono y personalidad consistente"},
+{id:"c2_3",text:"Target audience definition (qui\u00e9nes son realmente)"},
+{id:"c2_4",text:"Brand values, mission y promesa"},
+{id:"c2_5",text:"Competitive analysis: mapear competidores"},
+{id:"c2_6",text:"Unique Selling Proposition (USP)"}
+],
+resources:[
+{name:"HubSpot - Brand Positioning Guide",url:"https://blog.hubspot.com/marketing/brand-positioning"},
+{name:"Brand Strategy (The Futur YT)",url:"https://www.youtube.com/c/thefutur"},
+{name:"Canva Brand Kit Guide",url:"https://www.canva.com/designschool/courses/brand-identity/"},
+{name:"Seth Godin\u2019s Blog",url:"https://seths.blog"}
+],
+project:"Brand Audit de CarlaGems, Bubble Talk, Velvet Finds. Crear Brand Voice Guide. Definir 3-5 Audience Personas con datos."},
+{id:"c3",title:"Content Pillars & Strategy",weeks:"Sem 5\u20136",icon:"\ud83d\udccb",
+topics:[
+{id:"c3_1",text:"Content pillars: temas principales recurrentes"},
+{id:"c3_2",text:"Content clusters: c\u00f3mo relacionar contenido"},
+{id:"c3_3",text:"Topic research: encontrar qu\u00e9 interesa a audiencia"},
+{id:"c3_4",text:"Content calendar planning semanal/mensual"},
+{id:"c3_5",text:"Format decisions: video, podcast, escrito, visual"},
+{id:"c3_6",text:"Seasonal vs evergreen content"}
+],
+resources:[
+{name:"Content Marketing Institute",url:"https://contentmarketinginstitute.com/getting-started/"},
+{name:"Notion Content Calendar Templates",url:"https://www.notion.so/templates/category/content-calendar"},
+{name:"Answer The Public (research)",url:"https://answerthepublic.com"},
+{name:"Google Trends",url:"https://trends.google.com"}
+],
+project:"Definir 5-7 pilares tem\u00e1ticos para Wild&Cute o CarlaGems. Plan de 12 semanas de contenido. 30 ideas alineadas a tus pillars."},
+{id:"c4",title:"Audience Psychology & Engagement",weeks:"Sem 7\u20138",icon:"\ud83e\udde0",
+topics:[
+{id:"c4_1",text:"Psychological triggers: curiosidad, urgencia, pertenencia"},
+{id:"c4_2",text:"Community psychology: por qu\u00e9 la gente se une"},
+{id:"c4_3",text:"Engagement mechanics: qu\u00e9 provoca participaci\u00f3n"},
+{id:"c4_4",text:"Trust building: credibilidad y autenticidad"},
+{id:"c4_5",text:"Parasocial relationships: conexi\u00f3n emocional"},
+{id:"c4_6",text:"Feedback loops: escuchar, responder, iterar"}
+],
+resources:[
+{name:"Influence (Cialdini) resumen YT",url:"https://www.youtube.com/results?search_query=influence+cialdini+summary"},
+{name:"Hootsuite - Social Media Psychology",url:"https://blog.hootsuite.com/social-media-psychology/"},
+{name:"Nir Eyal - Hooked Model",url:"https://www.youtube.com/results?search_query=nir+eyal+hooked+model"},
+{name:"Psychology of Color in Marketing",url:"https://blog.hubspot.com/the-hustle/psychology-of-color"}
+],
+project:"Analizar qu\u00e9 contenido genera m\u00e1s respuesta. Blueprint de comunidad. Campa\u00f1a de 4-6 semanas que construya confianza."},
+{id:"c5",title:"Proyecto Integrador T1",weeks:"Sem 9\u201312",icon:"\ud83d\udcc4",
+topics:[
+{id:"c5_1",text:"Integrar TODO lo aprendido en una estrategia completa"},
+{id:"c5_2",text:"Documento de posicionamiento de marca"},
+{id:"c5_3",text:"Plan de contenido de 3 meses"},
+{id:"c5_4",text:"Audience personas detallados con data"},
+{id:"c5_5",text:"Brand voice guide aplicable"}
+],
+resources:[
+{name:"Milanote (organizar visualmente)",url:"https://milanote.com"},
+{name:"Notion Templates",url:"https://www.notion.so/templates"},
+{name:"Canva Presentaciones",url:"https://www.canva.com/presentations/"},
+{name:"Google Docs",url:"https://docs.google.com"}
+],
+project:"Documento estrat\u00e9gico profesional (15-20 p\u00e1ginas): Brand Story, Positioning, Personas, Pillars, Calendar, Voice Guide, M\u00e9tricas."}
+]},
+{id:"p2",phase:2,title:"CONTENT CREATION MASTERY",months:"Julio \u2013 Septiembre 2026",color:"#c084fc",
+modules:[
+{id:"c6",title:"Video Storytelling",weeks:"Sem 13\u201314",icon:"\ud83c\udfac",
+topics:[
+{id:"c6_1",text:"Video structure: hook, body, call-to-action"},
+{id:"c6_2",text:"Shot composition y framing b\u00e1sico"},
+{id:"c6_3",text:"Lighting para videos con celular"},
+{id:"c6_4",text:"Audio: voiceover, m\u00fasica, sonido ambiente"},
+{id:"c6_5",text:"Editing: CapCut (m\u00f3vil), DaVinci Resolve (desktop)"},
+{id:"c6_6",text:"Formatos: Reels, TikTok, Shorts, largo"}
+],
+resources:[
+{name:"CapCut Official Tutorials",url:"https://www.capcut.com/resource/capcut-tutorial"},
+{name:"DaVinci Resolve (gratis)",url:"https://www.blackmagicdesign.com/products/davinciresolve/"},
+{name:"Peter McKinnon (cinematograf\u00eda YT)",url:"https://www.youtube.com/c/PeterMcKinnon"},
+{name:"Ali Abdaal - How I Film Videos",url:"https://www.youtube.com/results?search_query=ali+abdaal+how+i+film"}
+],
+project:"3 short videos (15-30s). 1 talking head (2-3 min). 1 video editado con transiciones y B-roll (3-5 min)."},
+{id:"c7",title:"Podcast & Audio",weeks:"Sem 15\u201316",icon:"\ud83c\udf99\ufe0f",
+topics:[
+{id:"c7_1",text:"Podcast format y estructura de episodio"},
+{id:"c7_2",text:"Script writing para audio narrativo"},
+{id:"c7_3",text:"Recording setup: equipo b\u00e1sico"},
+{id:"c7_4",text:"Editing audio: Audacity (gratis), GarageBand"},
+{id:"c7_5",text:"Publishing: Spotify for Podcasters, RSS"},
+{id:"c7_6",text:"Guest interview format y preparaci\u00f3n"},
+{id:"c7_7",text:"Sonic branding: intro, outro, jingles"}
+],
+resources:[
+{name:"Spotify for Podcasters",url:"https://podcasters.spotify.com"},
+{name:"Audacity (editor gratis)",url:"https://www.audacityteam.org"},
+{name:"Pat Flynn - Podcasting Guide",url:"https://www.smartpassiveincome.com/tutorials/how-to-start-a-podcast/"},
+{name:"Spotify Podcast Academy",url:"https://podcasters.spotify.com/resources/learn"}
+],
+project:"Grabar y publicar 1 episodio de Bubble Talk. Entrevista con invitado. Audio branding kit: intro, outro, transiciones."},
+{id:"c8",title:"Visual Storytelling & Design",weeks:"Sem 17\u201320",icon:"\u2728",
+topics:[
+{id:"c8_1",text:"Principios de composici\u00f3n visual"},
+{id:"c8_2",text:"Color psychology y paletas coherentes"},
+{id:"c8_3",text:"Typography: fonts, jerarqu\u00eda, legibilidad"},
+{id:"c8_4",text:"Canva avanzado: templates, brand kits, animaciones"},
+{id:"c8_5",text:"Photography storytelling: contar con fotos"},
+{id:"c8_6",text:"Dise\u00f1o para redes: carousels, stories, posts"},
+{id:"c8_7",text:"Infograf\u00edas y datos visuales"}
+],
+resources:[
+{name:"Canva Design School (gratis)",url:"https://www.canva.com/designschool/"},
+{name:"Figma basics (gratis)",url:"https://www.figma.com/resources/learn-design/"},
+{name:"Coolors (paletas de color)",url:"https://coolors.co"},
+{name:"Unsplash (fotos gratis)",url:"https://unsplash.com"}
+],
+project:"Visual Identity Guide completa. 8-10 social posts profesionales. 1 infograf\u00eda. Serie de 5-10 fotos con historia coherente."},
+{id:"c9",title:"Proyecto Integrador T2",weeks:"Sem 21\u201324",icon:"\ud83c\udfaf",
+topics:[
+{id:"c9_1",text:"Campa\u00f1a completa usando TODOS los formatos"},
+{id:"c9_2",text:"Medir engagement y ajustar en tiempo real"},
+{id:"c9_3",text:"Documentar aprendizajes y best practices"},
+{id:"c9_4",text:"Crear case study presentable"}
+],
+resources:[
+{name:"Later (scheduling gratis)",url:"https://later.com"},
+{name:"Metricool (analytics gratis)",url:"https://metricool.com"},
+{name:"Linktree (bio links)",url:"https://linktr.ee"},
+{name:"Notion para documentar",url:"https://notion.so"}
+],
+project:"Campa\u00f1a multi-formato de 6-8 semanas: video, audio, posts visuales, stories \u2014 con visual identity consistente y m\u00e9tricas documentadas."}
+]},
+{id:"p3",phase:3,title:"COMMUNITY BUILDING & GROWTH",months:"Octubre \u2013 Diciembre 2026",color:"#34d399",
+modules:[
+{id:"c10",title:"Community Management",weeks:"Sem 25\u201328",icon:"\ud83d\udc65",
+topics:[
+{id:"c10_1",text:"Community guidelines: reglas, valores, cultura"},
+{id:"c10_2",text:"Engagement rituals: mantener conversaci\u00f3n activa"},
+{id:"c10_3",text:"Moderaci\u00f3n y resoluci\u00f3n de conflictos"},
+{id:"c10_4",text:"Building super-fans (fans m\u00e1s dedicados)"},
+{id:"c10_5",text:"UGC: user-generated content campaigns"},
+{id:"c10_6",text:"Community events y activaciones"},
+{id:"c10_7",text:"Retention strategies"}
+],
+resources:[
+{name:"Hootsuite Community Management",url:"https://blog.hootsuite.com/community-management/"},
+{name:"CMX Hub (community pros)",url:"https://cmxhub.com/articles/"},
+{name:"Discord (para comunidades)",url:"https://discord.com"},
+{name:"Circle.so Blog",url:"https://circle.so/blog"}
+],
+project:"Community Guidelines doc. Engagement plan 12 semanas. Ejecutar 1 community event. UGC campaign que motive fans a crear contenido."},
+{id:"c11",title:"Growth & Analytics",weeks:"Sem 29\u201332",icon:"\ud83d\udcca",
+topics:[
+{id:"c11_1",text:"M\u00e9tricas clave: reach, engagement rate, conversion, saves"},
+{id:"c11_2",text:"Platform analytics: Instagram Insights, YouTube Analytics"},
+{id:"c11_3",text:"A/B testing: experimentar t\u00edtulos, formatos, horarios"},
+{id:"c11_4",text:"Growth loops: mecanismos virales y de referral"},
+{id:"c11_5",text:"Conversion funnel: de follower a cliente/fan"},
+{id:"c11_6",text:"Dashboard creation: trackear todo en un lugar"}
+],
+resources:[
+{name:"Google Analytics Academy (gratis)",url:"https://skillshop.withgoogle.com/analytics"},
+{name:"Metricool (multi-plataforma)",url:"https://metricool.com"},
+{name:"HubSpot Growth Marketing",url:"https://blog.hubspot.com/marketing/growth-marketing"},
+{name:"Social Blade (competitive)",url:"https://socialblade.com"}
+],
+project:"Full audit de todas las plataformas. Analytics dashboard. 3-4 A/B tests documentados. Growth plan para +50% engagement en 6 meses."},
+{id:"c12",title:"Proyecto Integrador T3",weeks:"Sem 33\u201336",icon:"\ud83d\ude80",
+topics:[
+{id:"c12_1",text:"Campa\u00f1a de 12 semanas integrando toda la estrategia"},
+{id:"c12_2",text:"Content en m\u00faltiples formatos ejecutado"},
+{id:"c12_3",text:"Community engagement plan ejecutado"},
+{id:"c12_4",text:"Analytics y learnings documentados"}
+],
+resources:[
+{name:"Notion para case studies",url:"https://notion.so"},
+{name:"Canva para presentar resultados",url:"https://www.canva.com"},
+{name:"Loom (grabar presentaciones)",url:"https://www.loom.com"},
+{name:"Google Sheets (datos)",url:"https://sheets.google.com"}
+],
+project:"Case study profesional: estrategia, ejecuci\u00f3n, resultados, qu\u00e9 funcion\u00f3, qu\u00e9 no \u2014 formato para portafolio."}
+]},
+{id:"p4",phase:4,title:"MONETIZACI\u00d3N & PERSONAL BRAND",months:"Enero \u2013 Marzo 2027",color:"#fbbf24",
+modules:[
+{id:"c13",title:"Personal Branding",weeks:"Sem 37\u201340",icon:"\ud83d\udc8e",
+topics:[
+{id:"c13_1",text:"Definir tu nicho y expertise \u00fanica"},
+{id:"c13_2",text:"Bio y pitch profesional"},
+{id:"c13_3",text:"Portfolio online: qu\u00e9 mostrar, c\u00f3mo presentar"},
+{id:"c13_4",text:"LinkedIn y presencia profesional"},
+{id:"c13_5",text:"Networking: conectar con marcas y creadores"},
+{id:"c13_6",text:"Public speaking basics"}
+],
+resources:[
+{name:"Gary Vee - Personal Brand (YT)",url:"https://www.youtube.com/results?search_query=gary+vee+personal+brand"},
+{name:"LinkedIn Learning (trial gratis)",url:"https://www.linkedin.com/learning/"},
+{name:"Carrd.co (portfolio gratis)",url:"https://carrd.co"},
+{name:"About.me",url:"https://about.me"}
+],
+project:"Portfolio online con mejores trabajos. LinkedIn optimizado. Elevator pitch de 30 segundos grabado en video."},
+{id:"c14",title:"Monetizaci\u00f3n de Contenido",weeks:"Sem 41\u201344",icon:"\ud83d\udcb0",
+topics:[
+{id:"c14_1",text:"Modelos: sponsorships, afiliados, productos digitales"},
+{id:"c14_2",text:"Media kit: presentarte a marcas"},
+{id:"c14_3",text:"Pricing: cu\u00e1nto cobrar por servicios"},
+{id:"c14_4",text:"Colaboraciones y brand deals"},
+{id:"c14_5",text:"Productos digitales: ebooks, templates, gu\u00edas"},
+{id:"c14_6",text:"Email marketing: newsletter como activo"}
+],
+resources:[
+{name:"Mailchimp (email gratis)",url:"https://mailchimp.com"},
+{name:"Gumroad (vender digital)",url:"https://gumroad.com"},
+{name:"Stan Store (links + shop)",url:"https://www.stan.store"},
+{name:"Creator Economy Hub",url:"https://www.creatornomics.com"}
+],
+project:"Media kit profesional. Primer producto digital publicado. Pitch a 3 marcas. Newsletter con primeras 3 ediciones."},
+{id:"c15",title:"Proyecto Integrador T4",weeks:"Sem 45\u201348",icon:"\ud83c\udfaf",
+topics:[
+{id:"c15_1",text:"Lanzamiento de marca personal completo"},
+{id:"c15_2",text:"Primera monetizaci\u00f3n real"},
+{id:"c15_3",text:"Documentar modelo de negocio"},
+{id:"c15_4",text:"Iterar basado en resultados"}
+],
+resources:[
+{name:"Notion (business planning)",url:"https://notion.so"},
+{name:"Stripe (pagos online)",url:"https://stripe.com"},
+{name:"Calendly (agendar consultas)",url:"https://calendly.com"},
+{name:"Canva (materiales de venta)",url:"https://canva.com"}
+],
+project:"Brand launch completo: presencia online, oferta clara, primeros clientes o seguidores pagos."}
+]},
+{id:"p5",phase:5,title:"CONSULTING & ESPECIALIZACI\u00d3N",months:"Abril \u2013 Septiembre 2027",color:"#f472b6",
+modules:[
+{id:"c16",title:"Consulting Skills",weeks:"Sem 49\u201354",icon:"\ud83c\udfdb\ufe0f",
+topics:[
+{id:"c16_1",text:"Discovery calls: diagnosticar necesidades del cliente"},
+{id:"c16_2",text:"Propuestas de servicio: estructura y presentaci\u00f3n"},
+{id:"c16_3",text:"Project management para freelance"},
+{id:"c16_4",text:"Client communication: expectativas y entregables"},
+{id:"c16_5",text:"Contratos y acuerdos b\u00e1sicos"},
+{id:"c16_6",text:"Pricing strategies: proyecto, retainer, hora"}
+],
+resources:[
+{name:"The Futur - Pricing (YT)",url:"https://www.youtube.com/results?search_query=the+futur+pricing+design"},
+{name:"HoneyBook (CRM freelance)",url:"https://www.honeybook.com"},
+{name:"Bonsai (contratos freelance)",url:"https://www.hellobonsai.com"},
+{name:"Trello (project management)",url:"https://trello.com"}
+],
+project:"Definir 2-3 paquetes de servicios con precios. Trabajar primer proyecto real de content strategy. Case study del cliente."},
+{id:"c17",title:"Especializaci\u00f3n Avanzada",weeks:"Sem 55\u201364",icon:"\u2b50",
+topics:[
+{id:"c17_1",text:"Elegir especializaci\u00f3n profunda"},
+{id:"c17_2",text:"Opci\u00f3n A: Creator Economy Expert \u2014 monetizaci\u00f3n para creadores"},
+{id:"c17_3",text:"Opci\u00f3n B: Community Strategist \u2014 comunidades de alto engagement"},
+{id:"c17_4",text:"Opci\u00f3n C: Podcast & Audio \u2014 formatos narrativos"},
+{id:"c17_5",text:"Opci\u00f3n D: Brand Storyteller \u2014 narrativa para empresas"},
+{id:"c17_6",text:"Crear metodolog\u00eda/framework propio"},
+{id:"c17_7",text:"Producir contenido educativo en tu especialidad"}
+],
+resources:[
+{name:"Skillshare (trial gratis)",url:"https://www.skillshare.com"},
+{name:"Coursera (auditar gratis)",url:"https://www.coursera.org"},
+{name:"Substack (newsletter/blog)",url:"https://substack.com"},
+{name:"Teachable (crear cursos)",url:"https://teachable.com"}
+],
+project:"Masterclass/workshop en tu especialidad. Signature System: tu propia metodolog\u00eda documentada. 2-3 proyectos de consultor\u00eda reales."},
+{id:"c18",title:"Portfolio & Posicionamiento Final",weeks:"Sem 65\u201372",icon:"\ud83d\udc51",
+topics:[
+{id:"c18_1",text:"Portfolio profesional con case studies"},
+{id:"c18_2",text:"Testimonials de clientes"},
+{id:"c18_3",text:"Presencia en comunidades de tu nicho"},
+{id:"c18_4",text:"Speaking: podcasts, panels, eventos como invitada"},
+{id:"c18_5",text:"Networking estrat\u00e9gico con profesionales"},
+{id:"c18_6",text:"Plan de crecimiento a 12 meses post-programa"}
+],
+resources:[
+{name:"Behance (portfolio creativo)",url:"https://www.behance.net"},
+{name:"Contra (freelance portfolio)",url:"https://contra.com"},
+{name:"Luma (organizar eventos)",url:"https://lu.ma"},
+{name:"SpeakerHub",url:"https://speakerhub.com"}
+],
+project:"Portfolio web con 5+ case studies y testimonials. Participar en 2-3 podcasts/panels. Plan de crecimiento a 12 meses."}
+]}
+];
+
+let completed={};
+let activePhase="p1";
+let expandedModule=null;
+let showStats=false;
+
+const allIds=[];
+PHASES.forEach(function(p){p.modules.forEach(function(m){m.topics.forEach(function(t){allIds.push(t.id);});});});
+const TOTAL=allIds.length;
+
+function load(){try{var r=localStorage.getItem(SK);if(r)completed=JSON.parse(r);}catch(e){completed={};}}
+function save(){try{localStorage.setItem(SK,JSON.stringify(completed));}catch(e){}}
+function toggle(id){if(completed[id])delete completed[id];else completed[id]=Date.now();save();render();}
+function toggleAll(modId){
+  var phase=null,mod=null;
+  for(var i=0;i<PHASES.length;i++){for(var j=0;j<PHASES[i].modules.length;j++){if(PHASES[i].modules[j].id===modId){phase=PHASES[i];mod=PHASES[i].modules[j];break;}}if(mod)break;}
+  if(!mod)return;
+  var allDone=mod.topics.every(function(t){return completed[t.id];});
+  mod.topics.forEach(function(t){if(allDone)delete completed[t.id];else if(!completed[t.id])completed[t.id]=Date.now();});
+  save();render();
+}
+function resetAll(){if(!confirm("Borrar TODO tu progreso? No se puede deshacer."))return;completed={};try{localStorage.removeItem(SK);}catch(e){}render();}
+function modProg(m){var d=m.topics.filter(function(t){return completed[t.id];}).length;return{done:d,total:m.topics.length,pct:Math.round((d/m.topics.length)*100)};}
+function phaseProg(p){var d=0,t=0;p.modules.forEach(function(m){m.topics.forEach(function(tp){t++;if(completed[tp.id])d++;});});return{done:d,total:t,pct:t?Math.round((d/t)*100):0};}
+function totalProg(){var d=Object.keys(completed).length;return{done:d,total:TOTAL,pct:Math.round((d/TOTAL)*100)};}
+function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML;}
+
+function render(){
+  var tot=totalProg();
+  var phase=null;
+  for(var i=0;i<PHASES.length;i++){if(PHASES[i].id===activePhase){phase=PHASES[i];break;}}
+  var h="";
+
+  h+='<div class="header"><div class="header-inner">';
+  h+='<div class="header-top"><div>';
+  h+='<div class="header-tag">CAREER://CONTENT & COMMUNITY</div>';
+  h+='<h1>Content Strategist & Community Builder</h1>';
+  h+='<div class="header-sub">18 meses \u00b7 Abr 2026 \u2192 Sep 2027 \u00b7 '+TOTAL+' temas \u00b7 72 semanas</div>';
+  h+='</div><div class="header-actions">';
+  h+='<button class="btn-s" onclick="showStats=!showStats;render();">'+(showStats?"\u2715":"\ud83d\udcca")+'</button>';
+  h+='<button class="btn-reset" onclick="resetAll()">reset</button>';
+  h+='</div></div>';
+  h+='<div class="prog-wrap"><div class="prog-labels"><span class="prog-left">progreso total</span>';
+  h+='<span class="prog-right">'+tot.done+'/'+tot.total+' \u00b7 '+tot.pct+'%</span></div>';
+  h+='<div class="prog-track"><div class="prog-fill '+(tot.pct>0&&tot.pct<100?"glowing":"")+'" style="width:'+tot.pct+'%"></div></div>';
+  h+='</div></div></div>';
+
+  if(showStats){
+    h+='<div class="stats-panel"><div class="stats-grid">';
+    PHASES.forEach(function(p){
+      var pr=phaseProg(p);
+      h+='<div class="stat-card" style="'+(pr.pct===100?"border-color:"+p.color+"55":"")+'" onclick="activePhase=\''+p.id+'\';showStats=false;expandedModule=null;render();">';
+      h+='<div class="stat-phase" style="color:'+p.color+'">FASE '+p.phase+'</div>';
+      h+='<div class="stat-pct">'+pr.pct+'%</div>';
+      h+='<div class="stat-count">'+pr.done+'/'+pr.total+'</div>';
+      h+='<div class="stat-bar"><div class="stat-bar-fill" style="width:'+pr.pct+'%;background:'+p.color+'"></div></div>';
+      h+='</div>';
+    });
+    h+='</div></div>';
+  }
+
+  h+='<div class="tabs">';
+  PHASES.forEach(function(p){
+    var pr=phaseProg(p);
+    var act=p.id===activePhase;
+    h+='<button class="tab '+(act?"active":"")+'" style="'+(act?"color:"+p.color+";border-bottom-color:"+p.color+";border-color:"+p.color+"44":"")+'" onclick="activePhase=\''+p.id+'\';expandedModule=null;render();">';
+    h+=(pr.pct===100?"\u2713 ":"")+"T"+p.phase+'<span class="tpct">'+pr.pct+'%</span></button>';
+  });
+  h+='</div>';
+
+  h+='<div class="content">';
+  if(phase){
+    var pp=phaseProg(phase);
+    h+='<div class="phase-banner" style="border:1px solid '+phase.color+'18"><div class="phase-top"><div>';
+    h+='<div class="phase-title" style="color:'+phase.color+'">TRIMESTRE '+phase.phase+': '+esc(phase.title)+'</div>';
+    h+='<div class="phase-sub">'+esc(phase.months)+' \u00b7 '+phase.modules.length+' m\u00f3dulos</div>';
+    h+='</div><div class="phase-badge" style="background:'+phase.color+'12;border:1px solid '+phase.color+'28;color:'+phase.color+'">'+pp.done+'/'+pp.total+'</div></div></div>';
+
+    phase.modules.forEach(function(mod){
+      var mp=modProg(mod);
+      var isExp=expandedModule===mod.id;
+      h+='<div class="module" style="'+(mp.pct===100?"border-color:"+phase.color+"33":"")+'">';
+      h+='<button class="mod-header" onclick="expandedModule=expandedModule===\''+mod.id+'\'?null:\''+mod.id+'\';render();">';
+      h+='<span class="mod-icon" style="filter:'+(mp.pct===100?"grayscale(0)":"grayscale(.3)")+'">'+mod.icon+'</span>';
+      h+='<div class="mod-info"><div class="mod-top"><div><span class="mod-name">'+esc(mod.title)+'</span><span class="mod-weeks">'+esc(mod.weeks)+'</span></div>';
+      h+='<div style="display:flex;align-items:center"><span class="mod-prog" style="color:'+(mp.pct===100?"var(--green)":phase.color)+'">'+(mp.pct===100?"\u2713 ":"")+mp.done+'/'+mp.total+'</span>';
+      h+='<span class="mod-arrow '+(isExp?"open":"")+'">▼</span></div></div>';
+      h+='<div class="mod-bar"><div class="mod-bar-fill" style="width:'+mp.pct+'%;background:'+(mp.pct===100?"var(--green)":phase.color)+'"></div></div>';
+      h+='</div></button>';
+
+      if(isExp){
+        h+='<div class="mod-body">';
+        h+='<div class="mark-row"><button class="btn-mark" style="border:1px solid '+phase.color+'33;color:'+phase.color+'" onclick="event.stopPropagation();toggleAll(\''+mod.id+'\')">'+(mp.pct===100?"desmarcar todo":"marcar todo \u2713")+'</button></div>';
+
+        h+='<div class="sec-box"><div class="sec-label" style="color:'+phase.color+'">TEMAS</div>';
+        mod.topics.forEach(function(t){
+          var dn=!!completed[t.id];
+          h+='<div class="topic-row '+(dn?"done":"")+'" onclick="toggle(\''+t.id+'\')">';
+          h+='<div class="chk '+(dn?"on":"")+'">'+(dn?'<span style="color:var(--green);font-size:11px;font-weight:800">\u2713</span>':"")+'</div>';
+          h+='<span class="t-text '+(dn?"done":"")+'">'+esc(t.text)+'</span></div>';
+        });
+        h+='</div>';
+
+        h+='<div class="sec-box res-box"><div class="sec-label" style="color:var(--warm)">RECURSOS GRATIS</div>';
+        mod.resources.forEach(function(r){
+          h+='<div class="res-link"><a href="'+esc(r.url)+'" target="_blank" rel="noopener"><span class="res-arrow">\u2192</span>'+esc(r.name)+'</a></div>';
+        });
+        h+='</div>';
+
+        h+='<div class="sec-box proj-box"><div class="sec-label" style="color:var(--mint)">PROYECTO PR\u00c1CTICO</div>';
+        h+='<p style="font-size:12.5px;line-height:1.55;color:var(--text3)">'+esc(mod.project)+'</p></div>';
+        h+='</div>';
+      }
+      h+='</div>';
+    });
+  }
+
+  h+='<div class="footer"><div class="footer-text">built for carla \u00b7 progreso guardado en este navegador</div></div>';
+  h+='</div>';
+
+  document.getElementById("app").innerHTML=h;
+}
+
+load();
+render();
+</script>
+</body>
+</html>
